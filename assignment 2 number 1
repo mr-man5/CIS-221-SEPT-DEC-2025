@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header>
+        <h1>Fashion Store</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Offers</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Products Table -->
+    <section class="products">
+        <h2>Our Latest Fashion Items</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Size</th>
+                    <th>Color</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Casual T-Shirt</td>
+                    <td>$15</td>
+                    <td>M</td>
+                    <td>Blue</td>
+                    <td>Comfortable cotton t-shirt perfect for everyday wear.</td>
+                </tr>
+                <tr>
+                    <td>Denim Jacket</td>
+                    <td>$45</td>
+                    <td>L</td>
+                    <td>Black</td>
+                    <td>Trendy jacket suitable for all seasons.</td>
+                </tr>
+                <tr>
+                    <td>Sneakers</td>
+                    <td>$60</td>
+                    <td>42</td>
+                    <td>White</td>
+                    <td>Stylish sneakers with great comfort for long walks.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Sale Offers -->
+    <section class="offers">
+        <h2>Upcoming Sale Offers</h2>
+        <p> Get up to <strong>30% OFF</strong> on all jackets this October!</p>
+        <p> Buy 1 pair of sneakers and get socks FREE!</p>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+        <h2>Why Shop With Us?</h2>
+        <ul>
+            <li> Affordable and stylish fashion.</li>
+            <li> Fast delivery across the country.</li>
+            <li> Easy returns within 14 days.</li>
+            <li> Secure payment options.</li>
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Fashion Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>
