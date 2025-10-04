@@ -1,0 +1,102 @@
+<?php
+// Database connection
+$host = "localhost";
+$user = "root";   // change if your MySQL user is different
+$pass = "";       // add password if required
+$db   = "fashion_store";
+
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch products
+$sql = "SELECT * FROM products";
+$result = $conn->query($sql);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; color: #333; }
+        header { background: #222; color: white; padding: 15px 0; text-align: center; }
+        header h1 { margin: 0; font-size: 2rem; }
+        nav ul { list-style: none; padding: 0; margin: 10px 0 0; display: flex; justify-content: center; gap: 20px; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+        nav a:hover { color: #ff9800; }
+        h2 { color: #444; margin-top: 20px; text-align: center; }
+        table { width: 80%; margin: 0 auto; border-collapse: collapse; box-shadow: 0 0 8px rgba(0,0,0,0.1); background: white; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background: #ff9800; color: white; }
+        tr:nth-child(even) { background: #f2f2f2; }
+        .stats { width: 80%; margin: 20px auto; background: white; padding: 15px; border-radius: 5px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+        footer { background: #222; color: white; text-align: center; padding: 15px 0; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fashion Store</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Offers</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="products">
+        <h2>Inventory Status</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price ($)</th>
+                    <th>Bought</th>
+                    <th>Sold</th>
+                    <th>In Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $total_revenue = 0;
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $in_stock = $row['quantity_bought'] - $row['quantity_sold'];
+                        $revenue = $row['quantity_sold'] * $row['price'];
+                        $total_revenue += $revenue;
+
+                        echo "<tr>
+                                <td>{$row['item_name']}</td>
+                                <td>{$row['price']}</td>
+                                <td>{$row['quantity_bought']}</td>
+                                <td>{$row['quantity_sold']}</td>
+                                <td>$in_stock</td>
+                              </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>No products found</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="stats">
+        <h2>Store Performance</h2>
+        <p><strong>Total Revenue:</strong> $<?php echo $total_revenue; ?></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Fashion Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+<?php $conn->close(); ?>
